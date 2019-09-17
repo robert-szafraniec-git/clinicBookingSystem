@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>E-clinic</title>
+</head>
+<body>
+<h1>Ustawienia użytkownika</h1>
+
+<div class="form-group blu-margin">
+
+    <span>Jesteś zalogowany jako:</span>
+    <span sec:authentication="name"></span>
+</div>
+
+
+<a>Zmiana hasła:</a>
+<br>
+<span th:text="${changePasswordMessage}"/>
+<br>
+<form th:action="@{/user/updatePassword}" method="POST">
+
+    <table>
+        <tr>
+            <td>Wpisz stare hasło</td>
+            <td><input th:value="${passOld}" type="password" id="passOld" name="passOld"/></td>
+        </tr>
+        <tr>
+            <td>Wpisz nowe hasło:</td>
+            <td><input th:value="${passNew}" type="password" id="passNew" name="passNew"/></td>
+        </tr>
+        <tr>
+            <td>Powtórz nowe hasło</td>
+            <td><input th:value="${passRepeat}" type="password" id="passRepete" name="passRepeat"/></td>
+        </tr>
+    </table>
+    <td>
+        <button type="submit">Zatwierdź</button>
+    </td>
+</form>
+
+
+<div>
+    <a th:href="@{/}">Strona główna</a>
+</div>
+
+
+</body>
+</html>

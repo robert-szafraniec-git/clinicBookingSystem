@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>E-clinic</title>
+</head>
+<body>
+Doktorzy w specjalizacji <span th:text="${specialization}"/>
+<table>
+    <thead>
+    <tr>
+        <th>Nr</th>
+        <th>Id</th>
+        <th>Imię</th>
+        <th>Nazwisko</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="doctor : ${doctors}">
+        <td th:text="${doctorStat.count}">1</td>
+        <td><span th:text="${doctor.id}"/></td>
+        <td><span th:text="${doctor.firstName}"/></td>
+        <td><span th:text="${doctor.lastName}"/></td>
+        <td><a th:href="@{../delete?id=} + ${doctor.id}">Usuń</a></td>
+        <td><a th:href="@{../edit?id=} + ${doctor.id}">Edytuj</a></td>
+    </tr>
+    </tbody>
+</table>
+<div sec:authorize="hasRole('USER')">
+    <a th:href="@{/doctor/create}">Utworz nowego doktora</a>
+</div>
+<div>
+    <a th:href="@{/}">Strona główna</a>
+</div>
+</body>
+</html>

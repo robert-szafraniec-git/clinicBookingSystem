@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>E-clinic</title>
+</head>
+<body>
+Pacjenci z peselem <span th:text="${pesel}"/>
+<table>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Imię</th>
+        <th>Nazwisko</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="patient : ${patients}">
+        <td><span th:text="${patient.id}"/></td>
+        <td><span th:text="${patient.firstName}"/></td>
+        <td><span th:text="${patient.lastName}"/></td>
+        <td><a th:href="@{../delete?id=} + ${patient.id}">Usuń</a></td>
+        <td><a th:href="@{../edit?id=} + ${patient.id}">Edytuj</a></td>
+    </tr>
+    </tbody>
+</table>
+
+<a th:href="@{/}">Strona główna</a>
+<a th:href="@{/patient/create}">nowy pacjent</a>
+</body>
+</html>

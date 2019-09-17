@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>E-clinic</title>
+</head>
+<body>
+<h3>Wizyty</h3>
+
+
+<div class="form-group blu-margin">
+    <form th:action="@{/visits/get}" th:object="${VisitDto}" method="POST">
+        <select th:field="*{doctorId}">
+            <option value="0">Wybierz lekarza</option>
+            <option
+                    th:each="doctor : ${doctors}"
+                    th:value="${doctor.id}"
+                    th:text="${doctor.firstName +' '+ doctor.lastName}"
+            >
+            </option>
+        </select>
+        <select th:field="*{specialization}">
+            <!--<option value="&#45;&#45;">Wybierz specjalizację</option>-->
+            <option
+                    th:each="specialization : ${specializations}"
+                    th:value="${specialization}"
+                    th:text="${specialization}"
+            >
+            </option>
+        </select>
+        <input type="submit" value="Wyświetl wyniki"/>
+    </form>
+</div>
+
+
+<table>
+    <thead>
+    <tr>
+        <th>Nr</th>
+        <th>Id</th>
+        <th>Data wizyty</th>
+        <th>Specjalizacja</th>
+        <th>Lekarz</th>
+        <th>Pacjent</th>
+        <th>Wiek pacjenta</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${visits.empty}">
+        <td colspan="2"> Brak zarejestrowanych wizyt</td>
+    </tr>
+    <tr align="right" th:each="visit : ${visits}">
+        <td th:text="${visitStat.count}">1</td>
+        <td><span th:text="${visit.id}"/></td>
+        <td><span th:text="${visit.visitDate}"/></td>
+        <td><span th:text="${visit.specialization}"/></td>
+        <td><span th:text="${visit.doctorFirstName +' '+ visit.doctorLastName}"/></td>
+        <td a><span th:text="${visit.patientFirstName +' '+ visit.patientLastName}"/></td>
+        <td><span th:text="${visit.patientAge}"/></td>
+        <td><a th:href="@{../delete?id=} + ${visit.id}">Usuń</a></td>
+        <td><a th:href="@{../edit?id=} + ${visit.id}">Edytuj</a></td>
+    </tr>
+
+    </tbody>
+</table>
+
+<div>
+    <a th:href="@{/}">Strona główna</a>
+</div>
+<div>
+    <a th:href="@{/visits/create}">Zarejestruj wizytę</a>
+</div>
+</body>
+</html>

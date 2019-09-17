@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>E-Clinic</title>
+</head>
+<body>
+
+
+<form th:action="@{/authenticate}" method="POST">
+    <table>
+        <tr>
+            <td>Login:</td>
+            <td><input type="text" id="username" name="username"/></td>
+        </tr>
+        <tr>
+            <td>Password:</td>
+            <td><input type="password" id="password" name="password"/></td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td>
+                <button type="submit">Zaloguj</button>
+            </td>
+        </tr>
+    </table>
+</form>
+<div>
+    <a th:href="@{/}">Strona główna</a>
+</div>
+</body>
+</html>

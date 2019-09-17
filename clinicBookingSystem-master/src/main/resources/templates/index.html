@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>E-cliinic</title>
+</head>
+<body>
+<h1>Welcome to e-clinic!</h1>
+<a>Dziś jest:</a>
+<span th:text="${todayDate}"></span>
+
+
+<ul>
+    <li><a th:href="@{/doctor/get/okulista}">Okuliści</a></li>
+    <li><a th:href="@{/doctor/get/internista}">Interniści</a></li>
+    <li><a th:href="@{/visits/get/all}">Zarejestroane wizyty</a></li>
+</ul>
+<div>
+    <a th:href="@{/visits/create}">Zarejestruj wizytę</a>
+</div>
+<div sec:authorize="hasRole('USER')">
+
+    <a th:href="@{/doctor/create}">Utworz nowego doktora</a>
+</div>
+
+
+<ul>
+    <li><a th:href="@{/patient/get/all}">Pacjent</a></li>
+
+</ul>
+
+<a th:href="@{/patient/create}">Utworz nowego pacienta</a>
+
+
+<div th:fragment="logout" class="logout" sec:authorize="isAuthenticated()">
+
+    Zalogowany jako: <span sec:authentication="name"></span> |
+    Rola: <span sec:authentication="principal.authorities"></span>
+
+    <div>
+        <form th:action="@{/logout}" method="POST">
+            <input type="submit" value="Logout"/>
+        </form>
+    </div>
+</div>
+<div th:fragment="login" class="logout" sec:authorize="isAnonymous()">
+    <a th:href="@{/login}">Zaloguj się</a>
+</div>
+
+
+</div>
+
+<div>
+    <a th:href="@{|~/${#authentication.name}/edit|}" class="text-left">Ustawienia użytkownika</a>
+</div>
+</body>
+</html>

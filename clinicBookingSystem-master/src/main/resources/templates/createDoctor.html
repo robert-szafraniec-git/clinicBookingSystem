@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>E-clinic</title>
+</head>
+<body>
+<h1>Create new doctor</h1>
+<form th:action="@{/doctor/create}" method="POST" th:object="${doctor}">
+    <table>
+        <tr>
+            <td></td>
+            <td><input type="hidden" id="id" name="id" th:value="${doctor.id}"/></td>
+        </tr>
+        <tr>
+            <td>Imie:</td>
+            <td><input type="text" id="firstName" name="firstName" th:value="${doctor.firstName}"/></td>
+        </tr>
+        <tr>
+            <td>Nazwisko:</td>
+            <td><input type="text" id="lastName" name="lastName" th:value="${doctor.lastName}"/></td>
+        </tr>
+        <tr>
+            <td>Specializacja:</td>
+            <td><input type="text" id="specialization" name="specialization" th:value="${doctor.specialization}"/></td>
+        </tr>
+
+
+        <tr>
+            <td></td>
+            <td>
+                <button type="submit">Zatwierdź</button>
+            </td>
+        </tr>
+    </table>
+
+</form>
+
+<div>
+    <a th:href="@{/}">Strona główna</a>
+</div>
+</body>
+</html>
